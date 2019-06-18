@@ -263,20 +263,15 @@ class GoogleSignInActivity : BaseActivity(), View.OnClickListener {
                 .client(client.build())
                 .build()
                 .create(FunlootApi::class.java)
-                /*.postScore(token!!,body)*/
                 .getNews(token!!)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
                     Log.d("TEST", result.toString())
-                    textOnePiece.text = result[0].news_body.toString()
                     newsIntent.putExtra(NewsActivity.NEWS_TEXT, result[0].news_body.toString())
+                    startActivity(newsIntent)
 
                 }, { throwable -> {} })
 
-
-
-
-        startActivity(newsIntent)
     }
 
 

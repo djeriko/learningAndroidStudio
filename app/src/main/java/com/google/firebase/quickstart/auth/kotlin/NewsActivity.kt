@@ -14,10 +14,11 @@ class NewsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news) //Указание на файл разметки
+        showNews()
     }
 
     fun showNews() {
         val news = intent.getStringExtra(NEWS_TEXT)
-        textView.text = news.toString()
+        textViewLabel.text = news
     }
 }
