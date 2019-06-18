@@ -103,13 +103,6 @@ class GoogleSignInActivity : BaseActivity(), View.OnClickListener {
         // [END initialize_auth]
     }
 
-    //Всплывающее сообщение
-    fun changeText(view: View){
-        val myChangeText = Toast.makeText(this, "Wow wow!", Toast.LENGTH_LONG)
-
-        myChangeText.show()
-    }
-    //
 
     //Show news
     fun showNews(view: View){
@@ -228,6 +221,19 @@ class GoogleSignInActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
+    //Всплывающее сообщение - Неработает
+    fun changeText(view: View, user: FirebaseUser?){
+        if (user != null) {
+            val myChangeText = Toast.makeText(this, getString(R.string.google_status_fmt, user.uid), Toast.LENGTH_LONG)
+            //val myChangeText = getString(R.string.firebase_status_fmt, user.uid)
+            myChangeText.show()
+        }
+        else {
+            val myChangeText = Toast.makeText(this, "Пожалуйста войдите в систему", Toast.LENGTH_LONG)
+        }
+    }
+    //
+
     override fun onClick(v: View) {
         val i = v.id
         when (i) {
@@ -273,6 +279,5 @@ class GoogleSignInActivity : BaseActivity(), View.OnClickListener {
                 }, { throwable -> {} })
 
     }
-
 
 }
